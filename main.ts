@@ -7,16 +7,16 @@
 // ==========================
 // HELPERS
 // ==========================
-function clamp (val: number) {
+function clamp(val: number) {
     return Math.max(0, Math.min(100, val))
 }
-function getBarHeight (val: number) {
+function getBarHeight(val: number) {
     return Math.round(val * 5 / 100)
 }
 // ==========================
 // STUDY ANIMATION
 // ==========================
-function studyAnimation () {
+function studyAnimation() {
     basic.showLeds(`
         # # # # #
         # . # . #
@@ -83,7 +83,7 @@ roversa.onEvent(RoversaPin.P16, RoversaEvent.Click, function () {
     songIndex = (songIndex + 1) % 5
     updateStats()
 })
-function updateStats () {
+function updateStats() {
     energy = clamp(energy)
     happiness = clamp(happiness)
     health = clamp(health)
@@ -91,7 +91,7 @@ function updateStats () {
     updateFace()
     checkDeath()
 }
-function updateFace () {
+function updateFace() {
     if (isDead) {
         basic.showIcon(IconNames.Skull)
     } else if (isSleeping) {
@@ -104,7 +104,7 @@ function updateFace () {
         basic.showIcon(IconNames.Happy)
     }
 }
-function wakeAnimation () {
+function wakeAnimation() {
     // closed eyes
     basic.showLeds(`
         . . . . .
@@ -138,7 +138,7 @@ function wakeAnimation () {
     // happy face after waking
     basic.showIcon(IconNames.Happy)
 }
-function eatSound () {
+function eatSound() {
     for (let index = 0; index < 4; index++) {
         music.playTone(400, 40)
         basic.pause(20)
@@ -167,7 +167,7 @@ roversa.onEvent(RoversaPin.P13, RoversaEvent.Click, function () {
     addiction = Math.max(0, addiction - 5)
     ignoredBreakCount = 0
 })
-function checkDeath () {
+function checkDeath() {
     if (energy <= 0 || health <= 0) {
         isDead = true
         playingGame = false
@@ -183,11 +183,11 @@ input.onButtonPressed(Button.B, function () {
     }
     basic.clearScreen()
     stats = [
-    energy,
-    happiness,
-    health,
-    social,
-    phoneTime * 10
+        energy,
+        happiness,
+        health,
+        social,
+        phoneTime * 10
     ]
     for (let x = 0; x <= 4; x++) {
         h = getBarHeight(stats[x])
@@ -232,7 +232,7 @@ input.onLogoEvent(TouchButtonEvent.Touched, function () {
     roversa.turnRight(60)
     roversa.turnLeft(60)
 })
-function wakeUp () {
+function wakeUp() {
     if (isSleeping) {
         isSleeping = false
     }
@@ -355,7 +355,7 @@ roversa.onEvent(RoversaPin.P15, RoversaEvent.Click, function () {
 // ==========================
 // PACMAN EAT
 // ==========================
-function pacmanEat () {
+function pacmanEat() {
     // frame 1
     basic.showLeds(`
         . # # # .
@@ -513,3 +513,4 @@ basic.forever(function () {
         return
     }
 })
+
